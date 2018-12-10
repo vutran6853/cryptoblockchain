@@ -1,0 +1,21 @@
+const DisplayType = new GraphQLObjectType({
+  name: 'Display',
+  fields: () => ({ 
+    FROMSYMBOL: { type: GraphQLString },
+    TOSYMBOL: { type: GraphQLString },
+    PRICE: { type: GraphQLString },
+    LASTVOLUME: { type: GraphQLString },
+    LASTVOLUMETO: { type: GraphQLString },
+    LASTTRADEID: { type: GraphQLString },
+    VOLUME24HOUR: { type: GraphQLString },
+    VOLUME24HOURTO: { type: GraphQLString },
+    OPEN24HOUR: { type: GraphQLString },
+    HIGH24HOUR: { type: GraphQLString },
+    LOW24HOUR: { type: GraphQLString },
+    LASTMARKET: { type: GraphQLString },
+    CHANGE24HOUR: { type: GraphQLString },
+    CHANGEPCT24HOUR: { type: GraphQLString },
+    CHANGEDAY: { type: GraphQLString },
+    CHANGEPCTDAY: { type: GraphQLString },
+  })
+})
