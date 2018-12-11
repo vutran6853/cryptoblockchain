@@ -1,45 +1,65 @@
 const grahpql = require('graphql');
 const lodash = require('lodash');
 
-// const axiso = require('axios');
+const axiso = require('axios');
 // axios.defaults.headers.common['X-CMC_PRO_API_KEY'] = process.env.REACT_APP_CRYPTOCOMPARE_KEY
 
-const { GraphQLObjectType, GraphQLString, 
-        GraphQLSchema, GraphQLID , GraphQLInt, 
-        GraphQLList, GraphQLNonNull } = grahpql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, 
+        GraphQLID , GraphQLInt, GraphQLList, GraphQLNonNull, 
+        GraphQLBoolean } = grahpql;
 
-
-//// def ObjectType 
-const SingleBlockType = new GraphQLObjectType({
-  name: 'SingleBlock',
-  fields: () => ({ 
-    hash: { type: GraphQLString },
-    ver: { type: GraphQLInt },
-    prev_block: { type: GraphQLString },
-    tx: { type: TransactionType }
-  })
-});
-
-const TransactionType = new GraphQLObjectType({
-  name: 'Transaction',
-  fields: () => ({ 
-  
-  })
-});
-
+const { SingleBlockType, SingleTransactionType, BlockHeightType, SingleAddressType, LatestBlockType } = require('./blockchainSchema');
 
 
 ////  init start point (root)
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    block: {
+    singleblock: {
       type:  SingleBlockType,
       args: { hashID: { type: GraphQLID } },
       //// code to get data from db or other source 
       resolve(parent, args) {
-        // console.log(`args ${ args.id }`);
-        return axiso.get(`https://blockchain.info/rawblock/$${ hashID }`)
+        // console.log(`args ${ args.hashID }`);
+        return axiso.get(`https://blockchain.info/rawblock/${ args.hashID }`)
+              .then(response => response.data)
+      },    
+    },
+    singleTransaction: {
+      type:  SingleTransactionType,
+      args: { transactionID: { type: GraphQLID } },
+      //// code to get data from db or other source 
+      resolve(parent, args) {
+        // console.log(`args ${ args.transactionID }`);
+        return axiso.get(`https://blockchain.info/rawtx/${ args.transactionID }`)
+              .then(response => response.data)
+      },    
+    },
+    blockHeight: {
+      type:  BlockHeightType,
+      args: { blockHeightID: { type: GraphQLID } },
+      //// code to get data from db or other source 
+      resolve(parent, args) {
+        // console.log(`args ${ args.blockHeightID }`);
+        return axiso.get(`https://blockchain.info/block-height/${ args.blockHeightID }?format=json`)
+              .then(response => response.data)
+      },    
+    },
+    singleAddress: {
+      type:  SingleAddressType,
+      args: { singleAddressID: { type: GraphQLID } },
+      //// code to get data from db or other source 
+      resolve(parent, args) {
+        // console.log(`args ${ args.singleAddressID }`);
+        return axiso.get(`https://blockchain.info/rawaddr/${ args.singleAddressID }`)
+              .then(response => response.data)
+      },    
+    },
+    latestBlock: {
+      type:  LatestBlockType,
+      //// code to get data from db or other source 
+      resolve(parent, args) {
+        return axiso.get(`https://blockchain.info/latestblock`)
               .then(response => response.data)
       },    
     },
