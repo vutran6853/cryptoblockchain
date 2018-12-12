@@ -158,6 +158,8 @@ const LatestBlockType = new GraphQLObjectType({
 });
 
 
+
+
 module.exports = {
   SingleBlockType,
   SingleTransactionType,
