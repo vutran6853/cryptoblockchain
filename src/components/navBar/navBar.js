@@ -14,6 +14,16 @@ let navBar = (props) => {
           blockchain
         </button>
       </Link>
+      <Link to='/icos'>
+        <button>
+          ICOS
+        </button>
+      </Link>
+      <Link to='/news'>
+        <button>
+          News
+        </button>
+      </Link>
     </div>
   )
 }

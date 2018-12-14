@@ -1,0 +1,26 @@
+INSERT INTO cryptoSymbolDetail(
+  crypto_Id, 
+  crypto_URL, 
+  crypto_ImageUrl, 
+  crypto_Name, 
+  crypto_Symbol, 
+  crypto_CoinName, 
+  crypto_FullName, 
+  crypto_Algorithm, 
+  crypto_ProofType, 
+  crypto_FullyPremined, 
+  crypto_TotalCoinSupply, 
+  crypto_BuiltOn, 
+  crypto_SmartContractAddress, 
+  crypto_PreMinedValue, 
+  crypto_TotalCoinsFreeFloat, 
+  crypto_SortOrder, 
+  crypto_Sponsored, 
+  crypto_IsTrading, 
+  crypto_TotalCoinsMined, 
+  crypto_BlockNumber, 
+  crypto_NetHashesPerSecond, 
+  crypto_BlockReward, 
+  crypto_BlockTime)
+
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23);
