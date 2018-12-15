@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
+          NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
+import './navBar.scss';
 
 let navBar = (props) => {
+  
+
   return(
-    <div>
+    <div className='navBarBox'>
        <Link to='/'>
-        <button>
+        <Button color='info' className='navbarButton'>
           cyprtoDashboard
-        </button>
+        </Button>
       </Link>
       <Link to='/blockchainDashBoard'>
-        <button>
+        <Button color='info'>
           blockchain
-        </button>
+        </Button>
       </Link>
       <Link to='/icos'>
-        <button>
+        <Button color='info'>
           ICOS
-        </button>
+        </Button>
       </Link>
       <Link to='/news'>
-        <button>
+        <Button color='info'>
           News
-        </button>
+        </Button>
       </Link>
     </div>
   )

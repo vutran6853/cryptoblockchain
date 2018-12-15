@@ -6,11 +6,13 @@ const { json } = require('body-parser');
 const mongoose = require('mongoose');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
-
+const massive = require('massive');
 const app = express();
 
-const { getSingleSymbolPrice, getMultSymbolPrice, getMultSymbolFullData, getCustomAverage, getAllCoinDetail, getConstituentExchanges, getNewsArticles } = require('./controllers/cryptoCompareData');
-const { getActiveIcos, getUpcomingIcos, getAllSymbol } = require('./controllers/chasingData');
+const { getSingleSymbolPrice, getMultSymbolPrice, getTopListByVolume, getMultSymbolFullData, getCustomAverage, getAllCoinDetail, getConstituentExchanges, getNewsArticles, testing, getAllSymbol } = require('./controllers/cryptoCompareData');
+const { getActiveIcos, getUpcomingIcos } = require('./controllers/chasingData');
+const { postSymbolId, getSingleSymbolPriceId, getSingleSymbolFullId, getHistoricalDailyId, getCoinInfoId, getAllCoinPaproka, getpaprokaId, getPaprokaDescriptionID } = require('./controllers/cryptoFullDetailSymbol');
+
 app.use(cors());
 app.use(json());
 
@@ -21,24 +23,30 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-////  connect string to db
-mongoose.connect(`mongodb://${ process.env.CONNECTION_STRING }`)
-.then((dbInstace) => {
-  // console.log('Copy of dbInstace', dbInstace.model )
+////  connect string to mongoose db
+// mongoose.connect(`mongodb://${ process.env.MONGODB_CONNECTION_STRING }`)
+// .then((dbInstace) => {
+//   // console.log('Copy of dbInstace', dbInstace.model )
+//   app.set('db', dbInstace)
+// })
+// .catch(error => console.log('DANGER! : ', error));
+
+
+////  Massive connect to SQL system functionality
+massive(process.env.POSTGRESQL_CONNECTION_STRING)
+.then(dbInstace => {
+  // console.log('Copy of dbInstace', dbInstace )
   app.set('db', dbInstace)
 })
 .catch(error => console.log('DANGER! : ', error));
 
-////  check connect to db
-// mongoose.connection.once('open', () => {
-//   console.log(`connected to database`)
-// });
 
 
 ////  Crypto Endpoint
 app.get('/api/getSingleSymbolPrice', getSingleSymbolPrice);
 app.get('/api/getMultSymbolPrice', getMultSymbolPrice);
 app.get('/api/getMultSymbolFullData', getMultSymbolFullData);
+app.get('/api/getTopListByVolume', getTopListByVolume)
 app.get('/api/getCustomAverage', getCustomAverage);
 app.get('/api/getAllCoinDetail', getAllCoinDetail);
 app.get('/api/getConstituentExchanges', getConstituentExchanges);
@@ -48,6 +56,21 @@ app.get('/api/getNewsArticles', getNewsArticles);
 app.get('/api/getActiveIcos', getActiveIcos);
 app.get('/api/getUpcomingIcos', getUpcomingIcos);
 app.get('/api/getAllSymbol', getAllSymbol);
+
+//// cryptoFullDetailSymbol Endpoint
+app.post('/api/postSymbolId', postSymbolId)
+app.get('/api/getSingleSymbolPriceId/:id', getSingleSymbolPriceId)
+app.get('/api/getSingleSymbolFullId/:id', getSingleSymbolFullId)
+app.get('/api/getHistoricalDailyId/:id', getHistoricalDailyId)
+app.get('/api/getCoinInfoId/:id', getCoinInfoId)
+
+
+//// coinpaprika Endpoint
+app.get('/api/getAllCoinPaproka', getAllCoinPaproka);
+app.get('/api/getpaprokaId/:id', getpaprokaId)
+app.get('/api/getPaprokaDescriptionID/:id', getPaprokaDescriptionID)
+////  testing Endpoint
+app.get('/api/testing', testing);
 
 
 app.listen(port, () => {

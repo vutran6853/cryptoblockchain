@@ -13,8 +13,9 @@ let postSymbolId  = (req, res, next) => {
 }
 
 let getSingleSymbolPriceId  = (req, res, next) => {
+  // console.log(`LINE 16 req.params`, req.params)
 
-  axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${ symbolID }&tsyms=USD,JPY,EUR`)
+  axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${ req.params.id }&tsyms=USD,JPY,EUR`)
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -27,10 +28,10 @@ let getSingleSymbolPriceId  = (req, res, next) => {
 
 let getSingleSymbolFullId  = (req, res, next) => {
 
-  axios.get(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${ symbolID }&tsyms=USD,EUR`)
+  axios.get(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${ req.params.id }&tsyms=USD,EUR`)
   .then((response) => {
     // console.log(response.data)
-    res.status(200).send([response.data])
+    res.status(200).send(response.data)
   })
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
@@ -40,7 +41,7 @@ let getSingleSymbolFullId  = (req, res, next) => {
 
 let getHistoricalDailyId  = (req, res, next) => {
 
-  axios.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${ symbolID }&tsym=USD&limit=10`)
+  axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.params.id }&tsym=USD&limit=10`)
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -53,7 +54,7 @@ let getHistoricalDailyId  = (req, res, next) => {
 
 let getCoinInfoId  = (req, res, next) => {
 
-  axios.get(`https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${ symbolID }&tsym=USD`)
+  axios.get(`https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${ req.params.id }&tsym=USD`)
   .then((response) => {
     // console.log(response.data)
     res.status(200).send(response.data)
@@ -80,13 +81,13 @@ let getAllCoinPaproka = (req, res, next) => {
 
 
 let getpaprokaId = (req, res, next) => {
-  console.log('hit line 83')
-  console.log(`req.params`, req.params)
+  // console.log('hit line 83')
+  // console.log(`LINE 84 req.params`, req.params)
 
     let filterID = allCoinpaprika.filter((value, index) => {
       // console.log(value.symbol, symbolID)
       if(value.symbol === req.params.id) {
-        return value
+        res.status(200).send(value)
         // console.log('1',value.symbol, req.params.id)
       } else if(value.symbol !== symbolID){
         // console.log('2',value.symbol, req.params.id)
@@ -99,31 +100,19 @@ let getpaprokaId = (req, res, next) => {
 }
 
 let getPaprokaDescriptionID = (req, res, next) => {
-  console.log('HIT line 101')
+  // console.log('HIT line 102')
+  // console.log(`LINE 103 req.params`, req.params)
+
+  axios.get(`https://api.coinpaprika.com/v1/coins/${ req.params.id }`)
+  .then((response) => {
+    // console.log(response.data)
+    res.status(200).send([response.data])
+  })
+  .catch((error) => {
+    console.log(`Danger! Backend errror ${ error }`)
+  });
   
-  if(paprokaIdData.symbol === symbolID) {
-
-    console.log('Line 100', paprokaIdData.symbol , symbolID, paprokaIdData.symbol)
-    axios.get(`https://api.coinpaprika.com/v1/coins/${ paprokaIdData.id }`)
-    .then((response) => {
-      res.status(200).json(response.data)
-
-    })
-    .catch((error) => {
-      console.log(`Danger! Backend errror ${ error }`)
-    });
-  } else {
-    // getpaprokaId()
-    console.log('Line 116', paprokaIdData.symbol , symbolID, paprokaIdData.symbol)
-    // axios.get(`https://api.coinpaprika.com/v1/coins/${ paprokaIdData.symbol }`)
-    // .then((response) => {
-    //   res.status(200).json(response.data)
-    // })
-    // .catch((error) => {
-    //   console.log(`Danger! Backend errror ${ error }`)
-    // });
-
-  }
+  
 
  
  

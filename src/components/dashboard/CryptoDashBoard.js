@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../navBar/navBar';
 import { connect } from 'react-redux';
-import { getAllSymbolData, postSymbolId } from '../../duck/cyprtoReducer';
+import { postSymbolId } from '../../duck/cyprtoReducer';
 import axios from 'axios';
 import lodash from 'lodash';
 import { Table } from 'reactstrap';
@@ -19,7 +19,7 @@ class CryptoDashBoard extends Component {
   componentDidMount() {
     axios.get('/api/getTopListByVolume')
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       this.setState({ cryptoData: response.data.Data })
     })
     .catch((error) => {
@@ -41,13 +41,18 @@ class CryptoDashBoard extends Component {
 
 
   handleBitcoinInfo(ids) {
-    console.log(`id: ${ ids }`)
+    // console.log(`id: ${ ids }`)
     this.setState({ ids: ids })
-    console.log(`PROPS`, this.props)
+    // console.log(`PROPS`, this.props)
     this.props.postSymbolId({ id: ids })
-    axios.post(`/api/postSymbolId`, { id: ids })
-    .then(this.props.history.push('/cryptoFullDetail'))
-    .catch(error => console.log(error));
+    
+
+
+    this.props.history.push('/cryptoFullDetail')
+
+    // axios.post(`/api/postSymbolId`, { id: ids })
+    // .then(this.props.history.push('/cryptoFullDetail'))
+    // .catch(error => console.log(error));
   }
   
 
@@ -99,8 +104,8 @@ class CryptoDashBoard extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state
+function mapStateToProps(initialState) {
+  return initialState
 }
 
 export default connect(mapStateToProps, { postSymbolId }) (CryptoDashBoard);

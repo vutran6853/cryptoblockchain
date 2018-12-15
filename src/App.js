@@ -6,6 +6,8 @@ import routes from './routes';
 import NavBar from './components/navBar/navBar';
 import { Provider } from 'react-redux';
 import store from './duck/store';
+import 'bootstrap/dist/css/bootstrap.css';
+
 const url = process.env.REACT_APP_URL
 
 // apollo client setup
