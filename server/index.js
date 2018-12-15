@@ -11,7 +11,7 @@ const app = express();
 
 const { getSingleSymbolPrice, getMultSymbolPrice, getTopListByVolume, getMultSymbolFullData, getCustomAverage, getAllCoinDetail, getConstituentExchanges, getNewsArticles, testing, getAllSymbol } = require('./controllers/cryptoCompareData');
 const { getActiveIcos, getUpcomingIcos } = require('./controllers/chasingData');
-const { postSymbolId, getSingleSymbolPriceId, getSingleSymbolFullId, getHistoricalDailyId, getCoinInfoId, getAllCoinPaproka, getpaprokaId, getPaprokaDescriptionID } = require('./controllers/cryptoFullDetailSymbol');
+const { postSymbolId, getSingleSymbolPriceId, getSingleSymbolFullId, getHistoricalId, getCoinInfoId, getAllCoinPaproka, getpaprokaId, getPaprokaDescriptionID } = require('./controllers/cryptoFullDetailSymbol');
 
 app.use(cors());
 app.use(json());
@@ -61,7 +61,7 @@ app.get('/api/getAllSymbol', getAllSymbol);
 app.post('/api/postSymbolId', postSymbolId)
 app.get('/api/getSingleSymbolPriceId/:id', getSingleSymbolPriceId)
 app.get('/api/getSingleSymbolFullId/:id', getSingleSymbolFullId)
-app.get('/api/getHistoricalDailyId/:id', getHistoricalDailyId)
+app.get('/api/getHistoricalId/:id', getHistoricalId)
 app.get('/api/getCoinInfoId/:id', getCoinInfoId)
 
 

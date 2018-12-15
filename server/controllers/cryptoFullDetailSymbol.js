@@ -39,11 +39,11 @@ let getSingleSymbolFullId  = (req, res, next) => {
 
 }
 
-let getHistoricalDailyId  = (req, res, next) => {
+let getHistoricalId  = (req, res, next) => {
 
-  axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.params.id }&tsym=USD&limit=10`)
+  axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.params.id }&tsym=USD&limit=10&`)
   .then((response) => {
-    // console.log(response.data)
+    console.log('LINE 46', response.data)
     res.status(200).send(response.data)
   })
   .catch((error) => {
@@ -126,7 +126,7 @@ module.exports = {
   postSymbolId,
   getSingleSymbolPriceId,
   getSingleSymbolFullId,
-  getHistoricalDailyId,
+  getHistoricalId,
   getCoinInfoId,
   getAllCoinPaproka,
   getpaprokaId,

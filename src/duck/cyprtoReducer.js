@@ -7,7 +7,7 @@ const SYMBOLID = 'SYMBOLID';
 const PAPROKAID = 'PAPROKAID';
 const SINGLESYMBOLPRICEID = 'SINGLESYMBOLPRICEID';
 const SINGLESYMBOLFILLID = 'SINGLESYMBOLFILLID';
-const HISTORICALDAILYID = 'HISTORICALDAILYID';
+const HISTORICALID = 'HISTORICALDAILYID';
 const COININFOID = 'COININFOID';
 
 ////  initial value
@@ -18,7 +18,7 @@ const initialState = {
   paprokaId: [],
   singleSymbolPriceId: [],
   singleSymbolFullId: [],
-  historicalDailyId: [],
+  historicalId: [],
   coinInfoId: [],
 }
 
@@ -57,11 +57,11 @@ export function getSingleSymbolFullId(id) {
     }
 }
 
-export function getHistoricalDailyId(id) {
+export function getHistoricalId(id) {
     // console.log(`id::${ id }`)
     return {
-      type: HISTORICALDAILYID,
-      payload: axios.get(`/api/getHistoricalDailyId/${ id }`)                
+      type: HISTORICALID,
+      payload: axios.get(`/api/getHistoricalId/${ id }`)                
     }
 }
 
@@ -129,11 +129,11 @@ export default function cyprtoReducer(state = initialState, action) {
       singleSymbolFullId: action.payload.data
     }
 
-    case HISTORICALDAILYID:
-    // console.log(`${ HISTORICALDAILYID }_FULFILLED`, action.payload)
+    case HISTORICALID:
+    // console.log(`${ HISTORICALID }_FULFILLED`, action.payload)
     return {
       ...state,
-      historicalDailyId: action.payload.data
+      historicalId: action.payload.data
     }
 
     case COININFOID:

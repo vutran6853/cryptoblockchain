@@ -1,0 +1,84 @@
+@import '../../globeSCSS.scss';
+
+
+.mainDetailBox {
+  border: $boarder;
+  
+}
+
+// #row1 {
+//   border: 2px solid black;
+  
+
+// }
+
+
+#colBox {
+  border: 2px solid yellow;
+  width: 10px;
+  height: 86vh;
+  float: left;
+  position: relative;
+  width: 19%;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 1px;
+
+  p {
+    border: 2px solid yellow;
+    margin-left: 90px;
+  }
+
+  img {
+    border: 2px solid yellow;
+    width: 150px;
+    
+  }
+
+}
+
+
+.coinDetailBox {
+    border: 5px solid black;
+    // margin-left: vh;
+
+    .singleSymbolPriceBox {
+      border: 1px solid rgb(134, 101, 212);
+    }
+
+    .singleSymbolMarketRateBox {
+      border: 1px solid red;
+
+      p {
+        border: 2px solid gray;
+        margin-left: 18px;
+        margin-top: 5px;
+      }
+
+    }
+}
+
+
+#coinDescriptionBox {
+  border: 1px solid black;
+
+  td {
+    border: 2px solid yellow;
+  }
+
+  p {
+    border: 2px solid red;
+    margin-top: 5px;
+  }
+ 
+
+}
+
+@media (min-width: 700px) and (max-width: 1440px) {
+
+  .coinDetailBox {
+    background-color: lightblue;
+    margin-left: 26vh;
+  }
+
+}
