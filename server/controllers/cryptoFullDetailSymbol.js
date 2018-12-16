@@ -41,14 +41,48 @@ let getSingleSymbolFullId  = (req, res, next) => {
 
 let getHistoricalId  = (req, res, next) => {
 
-  axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.params.id }&tsym=USD&limit=10&`)
-  .then((response) => {
-    console.log('LINE 46', response.data)
-    res.status(200).send(response.data)
-  })
-  .catch((error) => {
-    console.log(`Danger! Backend errror ${ error }`)
-  });
+  console.log("LINE 44", req.body)
+  if(req.body.number === 1) {
+
+    axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.body.id }&tsym=USD&limit=10&`)
+    .then((response) => {
+      res.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log(`Danger! Backend errror ${ error }`)
+    });
+
+  } else if(req.body.number === 2) {
+
+    axios.get(`https://min-api.cryptocompare.com/data/histoday?fsym=${ req.body.id }&tsym=USD&limit=10&`)
+    .then((response) => {
+      res.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log(`Danger! Backend errror ${ error }`)
+    });
+
+  } else if(req.body.number === 3) {
+
+    axios.get(`https://min-api.cryptocompare.com/data/histominute?fsym=${ req.body.id }&tsym=USD&limit=10&`)
+    .then((response) => {
+      res.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log(`Danger! Backend errror ${ error }`)
+    });
+
+  } else {
+    
+    axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.body.id }&tsym=USD&limit=10&`)
+    .then((response) => {
+      res.status(200).send(response.data)
+    })
+    .catch((error) => {
+      console.log(`Danger! Backend errror ${ error }`)
+    });
+  }
+ 
 
 }
 

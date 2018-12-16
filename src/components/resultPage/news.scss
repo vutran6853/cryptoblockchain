@@ -1,0 +1,93 @@
+@import '../../globeSCSS.scss';
+
+#newsCardBox {
+  border: $lightBlueBoarder;
+  margin-top: 5px;
+
+  img {
+    height: 200px;
+    width: 200px;
+    float: left;
+  }
+
+  a {
+    // border: $lightBlueBoarder;
+    margin-left: 10px;
+  }
+
+  // p {
+  //   margin-left: 210px;
+  //       // border: $lightBlueBoarder;
+
+  // }
+
+  // .fafaUpDownBox > .fafaUp { 
+  //     // border: $lightBlueBoarder;
+  //     margin-left: 720px;
+  // }
+}
+
+@media only screen and (max-width: 414px) {
+  #newsCardBox {
+    border: $lightBlueBoarder;
+    margin-top: 5px;
+
+    img {
+      height: 100px;
+      width: 100px;
+      float: left;
+      margin-right: 5px;
+    }
+
+    a {
+      font-size: 20px;
+    }
+
+    p {
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .pCategories {
+      height: 50px;
+    }
+     .fafaUpDownBox > .fafaUp { 
+      margin-left: 115px;
+    }
+  }
+
+}
+
+.backToTheTop {
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  background-color: #1088e9;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  float: right;
+}
+
+
+
+@media only screen and (min-width: 1440px) {
+
+  .fafaUpDownBox {
+       //  border: $lightBlueBoarder;
+         float: right;
+ 
+       //  .fafaDown {
+ 
+       //   // border: $lightBlueBoarder;
+       //     border: 5px solid yellow;
+       //     margin-right: 1px;
+       //     // float: right;
+       //     // background-color: red;
+       //   }
+ 
+       
+     
+  }
+ }

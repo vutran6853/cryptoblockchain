@@ -1,17 +1,9 @@
 @import '../../globeSCSS.scss';
 
-
 .mainDetailBox {
   border: $boarder;
   
 }
-
-// #row1 {
-//   border: 2px solid black;
-  
-
-// }
-
 
 #colBox {
   border: 2px solid yellow;
@@ -34,8 +26,8 @@
     width: 150px;
     
   }
-
 }
+
 
 
 .coinDetailBox {
@@ -70,8 +62,37 @@
     border: 2px solid red;
     margin-top: 5px;
   }
- 
+}
 
+#icosCardBox {
+  border: $lightBlueBoarder;
+  height: 400px;
+  width: 400px;
+  // float: right;
+  margin-right: 60px;
+  margin-top: 10px;
+
+  button {
+    margin-left: 100px;
+    margin-right: 2px;
+  }
+
+  a {
+    color: black;
+  }
+}
+
+
+
+@media only screen and (max-width: 414px) {
+
+  #icosCardBox {
+    border: $lightBlueBoarder;
+    height: 400px;
+    width: 300px;
+    margin-left: 50px;
+  
+  }
 }
 
 @media (min-width: 700px) and (max-width: 1440px) {
@@ -82,3 +103,4 @@
   }
 
 }
+

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { postSymbolId } from '../../duck/cyprtoReducer';
 import axios from 'axios';
 import lodash from 'lodash';
-import { Table } from 'reactstrap';
+import { Table  } from 'reactstrap';
 
 class CryptoDashBoard extends Component {
   constructor(props) {
@@ -12,8 +12,10 @@ class CryptoDashBoard extends Component {
     this.state = { 
       cryptoData: [],
       ids: [],
+      toolTipOpen: false,
      }
     this.handleBitcoinInfo = this.handleBitcoinInfo.bind(this);
+    this.handleToolTip = this.handleToolTip.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +57,9 @@ class CryptoDashBoard extends Component {
     // .catch(error => console.log(error));
   }
   
+  handleToolTip() {
+    this.setState({ toolTipOpen: !this.state.toolTipOpen })
+  }
 
 
 
@@ -65,12 +70,12 @@ class CryptoDashBoard extends Component {
     let diplayData = cryptoData.map((value, index) => {
           // console.log(value.DISPLAY.USD, index)
           return(
-              <tbody >
-                <tr>
-                  <th scope="row">{ index + 1 }</th>
-                  <td onClick={ () => this.handleBitcoinInfo(value.CoinInfo.Name) }>
+              <tbody>
+                <tr >
+                  <th scope="row" >{ index + 1 }</th>
+                  <td onClick={ () => this.handleBitcoinInfo(value.CoinInfo.Name) }   >
                     { value.DISPLAY.USD.FROMSYMBOL } { value.CoinInfo.FullName }
-                    <img width='10%' src={ `https://www.cryptocompare.com${ value.CoinInfo.ImageUrl }` } alt='broken'></img>
+                    <img width='10%' src={ `https://www.cryptocompare.com${ value.CoinInfo.ImageUrl }` } alt='broken' ></img>
                   </td>
                   <td>{ value.DISPLAY.USD.PRICE }</td>
                   <td>{ value.DISPLAY.USD.VOLUME24HOURTO }</td>

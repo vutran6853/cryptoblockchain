@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-const axios = require('axios');
+import { Container, Card, CardImg, CardText, 
+          CardBody, CardTitle, Button } from 'reactstrap';
+import { BackTop } from 'antd';
+import css from './news.scss';
 
+const axios = require('axios');
 
 class News extends Component {
   constructor(props) {
@@ -25,24 +29,41 @@ class News extends Component {
     let { newsData } = this.state
 
     let displayNews = newsData.map((value, index) => {
-      // console.log(value, index)
+      console.log(value, index)
       return(
-        <div>
-          <p>title: { value.title }</p>
-          <p>tags: { value.tags }</p>
-          <img src={ value.imageurl } alt='broken'></img>
-          <p>name: { value.name }</p>
-          <p>upvotes { value.upvotes }</p>
-          <p>downvotes { value.downvotes }</p>
-          <a href={ value.url } target='_blank'>{ value.title}</a>
-        </div>
+      <Container>
+        <Card id='newsCardBox'>
+          <CardBody>
+            <CardImg src={ value.imageurl } alt='broken'/>
+            <a href={ value.url } target='_blank'>{ value.title}</a>
+            <p>Detail: { value.body }</p>
+            <p className='pCategories'>Categories: { value.categories }</p>
+
+            <div className='fafaUpDownBox'>
+              <button className='fafaUp'>
+                <i class="fas fa-thumbs-up"></i> 
+                upvotes { value.upvotes }
+              </button>
+              <button className='fafaDown'>
+                <i class="fas fa-thumbs-down"></i> 
+                downvotes { value.downvotes }
+              </button>
+            </div>
+
+          </CardBody>
+        </Card>
+      </Container>
       )
     });
 
     return (
       <div>
-        <p>News</p>
         { displayNews }
+      
+        <BackTop>
+          <div className="backToTheTop">UP</div>
+        </BackTop>
+
       </div>
     );
   }

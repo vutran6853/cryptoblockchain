@@ -61,7 +61,7 @@ app.get('/api/getAllSymbol', getAllSymbol);
 app.post('/api/postSymbolId', postSymbolId)
 app.get('/api/getSingleSymbolPriceId/:id', getSingleSymbolPriceId)
 app.get('/api/getSingleSymbolFullId/:id', getSingleSymbolFullId)
-app.get('/api/getHistoricalId/:id', getHistoricalId)
+app.put('/api/getHistoricalId', getHistoricalId)
 app.get('/api/getCoinInfoId/:id', getCoinInfoId)
 
 

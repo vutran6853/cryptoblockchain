@@ -57,11 +57,13 @@ export function getSingleSymbolFullId(id) {
     }
 }
 
-export function getHistoricalId(id) {
-    // console.log(`id::${ id }`)
+export function getHistoricalId(id, number) {
+    console.log(`id::${ id }`)
+    console.log(`number::${ number }`)
+
     return {
       type: HISTORICALID,
-      payload: axios.get(`/api/getHistoricalId/${ id }`)                
+      payload: axios.put(`/api/getHistoricalId`, { id: id, number: number })                
     }
 }
 

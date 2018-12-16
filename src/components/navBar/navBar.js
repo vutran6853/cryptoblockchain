@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
+import { Button,Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
           NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import './navBar.scss';
@@ -9,28 +9,28 @@ let navBar = (props) => {
   
 
   return(
-    <div className='navBarBox'>
+    <Container fluid className='navBarBox'>
        <Link to='/'>
-        <Button color='info' className='navbarButton'>
+        <Button size='sm' color='info' className='navbarButton'>
           cyprtoDashboard
         </Button>
       </Link>
       <Link to='/blockchainDashBoard'>
-        <Button color='info'>
+        <Button size='sm' color='info'>
           blockchain
         </Button>
       </Link>
       <Link to='/icos'>
-        <Button color='info'>
+        <Button size='sm' color='info'>
           ICOS
         </Button>
       </Link>
       <Link to='/news'>
-        <Button color='info'>
+        <Button size='sm' color='info'>
           News
         </Button>
       </Link>
-    </div>
+    </Container>
   )
 }
 

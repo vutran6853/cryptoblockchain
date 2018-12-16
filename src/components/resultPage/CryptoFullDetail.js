@@ -19,7 +19,7 @@ class CryptoFullDetail extends Component {
       descriptionID: [],
       coinInfo: [],
       paprokaInfo: [],
-      activeTab: '1'
+      activeTab: '1',
      }
      this.displaySingleSymbolFull = this.displaySingleSymbolFull.bind(this);
      this.toggle = this.toggle.bind(this);
@@ -115,17 +115,48 @@ class CryptoFullDetail extends Component {
     }
   }
 
-  getHistoricalData(id) {
-    let { paprokaInfo } = this.state
+  
 
-    console.log(this.state)
-    console.log(`id ${ id }`)
-    if(id === 1) {
-      console.log(`id ${ id }`)
-    } else if(id === 2) {
-      console.log(`id ${ id }`)
-    } else if(id === 3) {
-      console.log(`id ${ id }`)
+  getHistoricalData(number) {
+    // console.log(this.state)
+    // console.log(`number ${ number }`)
+
+    if(number === 1) {
+      // console.log(`number ${ number }`)
+
+      this.props.getHistoricalId(this.props.cyprtoData.cryptoCompareCoinId, number)
+      .then((response) => {
+        // console.log(response.value.data.Data)
+        this.setState({ dailyHistorical: response.value.data.Data })
+      })
+      .catch((error) => {
+        console.log(`Danger! errror ${ error }`)
+      });
+
+    } else if(number === 2) {
+      // console.log(`number ${ number }`)
+
+      this.props.getHistoricalId(this.props.cyprtoData.cryptoCompareCoinId, number)
+      .then((response) => {
+        // console.log(response.value.data.Data)
+        this.setState({ dailyHistorical: response.value.data.Data })
+      })
+      .catch((error) => {
+        console.log(`Danger! errror ${ error }`)
+      });
+
+    } else if(number === 3) {
+      // console.log(`number ${ number }`)
+
+      this.props.getHistoricalId(this.props.cyprtoData.cryptoCompareCoinId, number)
+      .then((response) => {
+        // console.log(response.value.data.Data)
+        this.setState({ dailyHistorical: response.value.data.Data })
+      })
+      .catch((error) => {
+        console.log(`Danger! errror ${ error }`)
+      });
+
     } else {
       return null
     }
@@ -134,7 +165,7 @@ class CryptoFullDetail extends Component {
 
   render() {
     let { singleSymbolPrice, singleSymbolFull, dailyHistorical, descriptionID, coinInfo, paprokaInfo } = this.state
-    console.log(this.state)
+    // console.log(this.state)
 
     let displayCoinImage = coinInfo.map((value, index) => {
       // console.log(value.CoinInfo, index)
@@ -239,9 +270,9 @@ class CryptoFullDetail extends Component {
               <TabPane tabId='2'>
                 <Row>
                   <Col>
-                    <button onClick={ () => this.getHistoricalData(1) }>1 Hour</button>
-                    <button onClick={ () => this.getHistoricalData(2) }>Daily?</button>
-                    <button onClick={ () => this.getHistoricalData(3) }>Min?</button>
+                    <Button onClick={ () => this.getHistoricalData(1) }>1 Hour</Button>
+                    <Button onClick={ () => this.getHistoricalData(2) }>Daily?</Button>
+                    <Button onClick={ () => this.getHistoricalData(3) }>Min?</Button>
                     <Table bordered>
                       <thead>
                         <tr>
