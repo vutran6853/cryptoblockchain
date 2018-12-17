@@ -41,7 +41,7 @@ let getSingleSymbolFullId  = (req, res, next) => {
 
 let getHistoricalId  = (req, res, next) => {
 
-  console.log("LINE 44", req.body)
+  // console.log("LINE 44", req.body)
   if(req.body.number === 1) {
 
     axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.body.id }&tsym=USD&limit=10&`)

@@ -8,7 +8,8 @@ const { GraphQLObjectType, GraphQLSchema, GraphQLID} = grahpql;
 const { SingleBlockType, SingleTransactionType, BlockHeightType,
         SingleAddressType, LatestBlockType } = require('./blockchainSchema');
 
-const{       GraphQLString} = grahpql
+const{ GraphQLString } = grahpql
+
 ////  init start point (root)
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -109,12 +110,10 @@ const Mutation = new GraphQLObjectType({
       },    
     },
 
-
-
   },
 });
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
-  mutation: Mutation
+  // mutation: Mutation
 });

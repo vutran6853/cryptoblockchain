@@ -4,7 +4,8 @@ import './dashBoard.scss';
 import { getLatestBlockQuery, getSingleBlockQuery, getSingleTransactionQuery, getBlockHeightQuery, getSingleAddressQuery } from '../../graphqlQueries/blockchain';
 import ApolloClient from 'apollo-boost';
 import { gql } from 'apollo-boost';     ////  create query for frontend
-import displaySingleBlock from '../resultPage/singleBlock';
+// import displaySingleBlock from '../resultPage/singleBlock';
+import axios from 'axios';
 const url = process.env.REACT_APP_URL
 
 const client = new ApolloClient({
@@ -35,31 +36,23 @@ class BlockchainDashBoard extends Component {
     console.log(`userInputData: ${ userInputData }`)
 
     if(userInputData.length === 64 && checkString === '0000') {
-      
-      this.props.getSingleBlock({
-        variables:  { hashID: userInputData }
-      })
-      .then((response) => {
-        console.log(response)
-        // this.setState({ resultData: response.data })
-      })
-      
-        
-        
+      axios.get(`/api/getSingleBlock/${ userInputData }`)
+      .then(this.props.history.push('/result/singleBlock'))
+      .catch((error) => {
+        console.log(`Danger! ${ error }`)
+      });
     } else if(userInputData.length === 64 && checkString !== '0000') {
-      this.props.getSingleTransaction({
-        variables:  { transactionID: userInputData }
-      })
-      .then((response) => {
-        console.log(response)
-      })
+              axios.get(`/api/getSingleTransaction/${ userInputData }`)
+              .then(this.props.history.push('/result/singleTransaction'))
+              .catch((error) => {
+                console.log(`Danger! ${ error }`)
+              });
     } else if(userInputData.length === 34 || userInputData.length === 40){
-      this.props.getSingleAddress({
-        variables:  { singleAddressID: userInputData }
-      })
-      .then((response) => {
-        console.log(response)
-      })
+              axios.get(`/api/getSingleAddress/${ userInputData }`)
+              .then(this.props.history.push('/result/singleAddress'))
+              .catch((error) => {
+                console.log(`Danger! ${ error }`)
+              });
     } else {
       return null
     }
@@ -67,11 +60,10 @@ class BlockchainDashBoard extends Component {
 
   //// push user to latestblock page
   getLatestBlock() {
-   this.props.history.push('/latestblock')
+   this.props.history.push('/result/latestblock')
   }
 
   render() {
- console.log(this.props);
     return (
       <div className='BlockchaindashBoardBox'>
         <p>BlockchainDashBoard</p>

@@ -1,11 +1,11 @@
 const axios = require('axios');
 
 let getActiveIcos  = (req, res, next) => {
-  console.log('hit backend');
+  // console.log('hit backend');
 
   axios.get(`https://chasing-coins.com/api/v1/icos/active`)
   .then((response) => {
-    console.log(response.data)
+    // console.log(response.data)
     res.status(200).send(response.data)
   })
   .catch((error) => {
@@ -15,11 +15,11 @@ let getActiveIcos  = (req, res, next) => {
 }
 
 let getUpcomingIcos  = (req, res, next) => {
-  console.log('hit backend');
+  // console.log('hit backend');
 
   axios.get(`https://chasing-coins.com/api/v1/icos/upcoming`)
   .then((response) => {
-    console.log(response.data)
+    // console.log(response.data)
     // res.status(200).send(response.data)
   })
   .catch((error) => {

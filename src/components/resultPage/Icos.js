@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Card, CardImg, CardText, 
           CardBody, CardTitle, Button } from 'reactstrap';
 
-import './resultPage.scss';
+import './icos.scss';
 
 const axios = require('axios');
 const moment = require('moment');
@@ -36,7 +36,7 @@ class Icos extends Component {
           <Card id='icosCardBox'>
             <CardImg src={ value.image } alt='broken'/>
             <CardBody>
-              <CardTitle>{ value.name }</CardTitle>
+              <h5>{ value.name }</h5>
               <CardText>Start: { moment(value.start_time).format('MMM Do YY') }</CardText>
               <CardText>End: { moment(value.end_time).format('MMM Do YY') }</CardText>
               <CardText>{ value.description }</CardText>

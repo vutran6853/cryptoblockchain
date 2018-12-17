@@ -9,9 +9,10 @@ const schema = require('./schema/schema');
 const massive = require('massive');
 const app = express();
 
-const { getSingleSymbolPrice, getMultSymbolPrice, getTopListByVolume, getMultSymbolFullData, getCustomAverage, getAllCoinDetail, getConstituentExchanges, getNewsArticles, testing, getAllSymbol } = require('./controllers/cryptoCompareData');
+const { getSingleSymbolPrice, getMultSymbolPrice, getTopListByVolume, getMultSymbolFullData, getCustomAverage, getAllCoinDetail, getConstituentExchanges, getNewsArticles, getAllSymbol } = require('./controllers/cryptoCompareData');
 const { getActiveIcos, getUpcomingIcos } = require('./controllers/chasingData');
 const { postSymbolId, getSingleSymbolPriceId, getSingleSymbolFullId, getHistoricalId, getCoinInfoId, getAllCoinPaproka, getpaprokaId, getPaprokaDescriptionID } = require('./controllers/cryptoFullDetailSymbol');
+const { getSingleBlock, getSingleTransaction, getAddress, getLatestBlock, getResult } = require('./controllers/blockchainData');
 
 app.use(cors());
 app.use(json());
@@ -69,8 +70,13 @@ app.get('/api/getCoinInfoId/:id', getCoinInfoId)
 app.get('/api/getAllCoinPaproka', getAllCoinPaproka);
 app.get('/api/getpaprokaId/:id', getpaprokaId)
 app.get('/api/getPaprokaDescriptionID/:id', getPaprokaDescriptionID)
-////  testing Endpoint
-app.get('/api/testing', testing);
+
+////  blockchain Endpoint
+app.get('/api/getLatestBlock', getLatestBlock);
+app.get('/api/getSingleBlock/:hash', getSingleBlock);
+app.get('/api/getSingleTransaction/:hash', getSingleTransaction);
+app.get('/api/getSingleAddress/:address', getAddress);
+app.get('/api/getResult', getResult)
 
 
 app.listen(port, () => {

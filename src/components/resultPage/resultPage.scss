@@ -64,36 +64,49 @@
   }
 }
 
-#icosCardBox {
-  border: $lightBlueBoarder;
-  height: 400px;
-  width: 400px;
-  // float: right;
-  margin-right: 60px;
-  margin-top: 10px;
+// #icosCardBox {
+//   border: $lightBlueBoarder;
+//   height: 400px;
+//   width: 400px;
+//   // float: right;
+//   margin-right: 60px;
+//   margin-top: 10px;
 
-  button {
-    margin-left: 100px;
-    margin-right: 2px;
-  }
+//   button {
+//     margin-left: 100px;
+//     margin-right: 2px;
+//   }
 
-  a {
-    color: black;
-  }
-}
+//   a {
+//     color: black;
+//   }
+// }
 
 
 
-@media only screen and (max-width: 414px) {
+// @media only screen and (max-width: 414px) {
 
-  #icosCardBox {
-    border: $lightBlueBoarder;
-    height: 400px;
-    width: 300px;
-    margin-left: 50px;
+//   #icosCardBox {
+//     border: $lightBlueBoarder;
+//     height: 400px;
+//     width: 300px;
+//     margin-left: 50px;
   
-  }
-}
+//   }
+// }
+
+// @media only (min-width: 768px) and (max-width: 1024px) {
+
+//   #icosCardBox {
+//     border: 5px solid red;
+//     // height: 400px;
+//     // width: 300px;
+//     // margin-left: 50px;
+  
+//   }
+// }
+
+
 
 @media (min-width: 700px) and (max-width: 1440px) {
 

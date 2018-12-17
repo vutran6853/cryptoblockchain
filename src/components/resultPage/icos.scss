@@ -1,0 +1,62 @@
+@import '../../globeSCSS.scss';
+
+
+#icosCardBox {
+  // border: 5px solid red;
+  height: 400px;
+  width: 400px;
+  // float: right;
+  margin-right: 60px;
+  margin-top: 10px;
+
+  button {
+    margin-left: 100px;
+    margin-right: 2px;
+  }
+
+  a {
+    color: black;
+  }
+}
+
+////  Iphone/Galaxy Screen media css
+@media (min-width: $MoblieMinWidth) and (max-width: $MoblieMaxWidth) {
+
+  #icosCardBox {
+    border: $lightBlueBoarder;
+    height: 400px;
+    width: 300px;
+    margin-left: 28px;
+
+    button {
+      margin-left: 10vh;
+    }
+  }
+}
+
+////  screen size 1024
+@media only screen and (min-width: $destop1024MinWidth) {
+  #icosCardBox {
+    border: $lightBlueBoarder;
+    height: 400px;
+    width: 400px;
+    float: left;
+
+    p {
+      margin-top: 15px;
+    }
+  }
+}
+
+////  screen size 1440
+@media only screen and (min-width: $destop1440MinWidth) {
+  #icosCardBox {
+    border: $lightBlueBoarder;
+    height: 350px;
+    width: 300px;
+
+    button {
+      margin-left: 6vh;
+    }
+  }
+}

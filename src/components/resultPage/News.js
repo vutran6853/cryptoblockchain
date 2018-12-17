@@ -36,7 +36,7 @@ class News extends Component {
           <CardBody>
             <CardImg src={ value.imageurl } alt='broken'/>
             <a href={ value.url } target='_blank'>{ value.title}</a>
-            <p>Detail: { value.body }</p>
+            <p>{ value.body }</p>
             <p className='pCategories'>Categories: { value.categories }</p>
 
             <div className='fafaUpDownBox'>
