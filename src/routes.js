@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import CryptoDashBoard from './components/dashboard/CryptoDashBoard';
 import BlockchainDashBoard from './components/dashboard/BlockchainDashBoard';
-import Result from './components/resultPage/Result';
-import Icos from './components/resultPage/Icos';
-import News from './components/resultPage/News';
+import Result from './components/resultPage/blockView/Result';
+import Icos from './components/resultPage/icos/Icos';
+import News from './components/resultPage/news/News';
 import CryptoFullDetail from './components/resultPage/CryptoFullDetail';
-import SingleAddress from './components/resultPage/SingleAddress';
-import SingleTransaction  from './components/resultPage/SingleTransaction';
-import SingleBlock from './components/resultPage/SingleBlock';
+import SingleAddress from './components/resultPage/blockView/SingleAddress';
+import SingleTransaction  from './components/resultPage/blockView/SingleTransaction';
+import SingleBlock from './components/resultPage/blockView/SingleBlock';
 
 export default (
   <div>

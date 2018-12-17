@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { getLatestBlockQuery } from '../../graphqlQueries/blockchain';
+import { getLatestBlockQuery } from '../../../graphqlQueries/blockchain';
 import axios from 'axios';
 
 const monent = require('moment');

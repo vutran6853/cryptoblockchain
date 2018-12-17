@@ -1,0 +1,9 @@
+@import '../../globeSCSS.scss';
+
+
+
+@media only screen and (min-width: $destop1024MinWidth) {
+  tbody {
+    border: $pboarder;
+  }
+}

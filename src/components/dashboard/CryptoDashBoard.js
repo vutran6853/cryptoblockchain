@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { postSymbolId } from '../../duck/cyprtoReducer';
 import axios from 'axios';
 import lodash from 'lodash';
-import { Table  } from 'reactstrap';
+import { Table, Container  } from 'reactstrap';
+import './cryptoDashBoard.scss';
 
 class CryptoDashBoard extends Component {
   constructor(props) {
@@ -88,23 +89,22 @@ class CryptoDashBoard extends Component {
     });
 
     return (
-      <div>
-        <p>CryptoDashBoard</p>
-          <Table hover size="sm" bordered>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Coin</th>
-                <th>Price</th>
-                <th>Direct Vol.24</th>
-                <th>Total Vol.24H</th>
-                <th>MKTCAP</th>
-                <th>Chage 24H:</th>
-              </tr>
-            </thead>
-            { diplayData }
-          </Table>
-      </div>
+      <Container fluid>
+        <Table hover size="sm" bordered>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Coin</th>
+              <th>Price</th>
+              <th>Direct Vol.24</th>
+              <th>Total Vol.24H</th>
+              <th>MKTCAP</th>
+              <th>Chage 24H:</th>
+            </tr>
+          </thead>
+          { diplayData }
+        </Table>
+      </Container>
     );
   }
 }
