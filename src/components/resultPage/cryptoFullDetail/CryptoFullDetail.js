@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux';
-import { getpaprokaId, getPaprokaDescriptionID, getSingleSymbolPriceId, getSingleSymbolFullId, getHistoricalId, getCoinInfoId } from '../../duck/cyprtoReducer';
-import './resultPage.scss';
+import { getpaprokaId, getPaprokaDescriptionID, getSingleSymbolPriceId, getSingleSymbolFullId, getHistoricalId, getCoinInfoId } from '../../../duck/cyprtoReducer';
+import './cryptoFullDetail.scss';
 import { TabContent, Table, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Container, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
+// import CryptoLineChart from '../CryptoChart/CryptoLineChart';
+
 const monent = require('moment');
 const lodash = require('lodash');
+const ReactHighcharts = require('react-highcharts')
 
 class CryptoFullDetail extends Component {
   constructor(props) {
@@ -20,14 +23,31 @@ class CryptoFullDetail extends Component {
       coinInfo: [],
       paprokaInfo: [],
       activeTab: '1',
+
+      config: {
+        yAxis: { title: { text: 'USD $' } },
+        xAxis: {
+          categories: []
+        },
+      
+        title: { text: 'Europe time zones' },
+        // name: { text: 'My title' },
+        series: [{
+          name:  '',
+          type: "line",
+          data: []
+        }]
+      }
+      
      }
      this.displaySingleSymbolFull = this.displaySingleSymbolFull.bind(this);
      this.toggle = this.toggle.bind(this);
      this.getHistoricalData = this.getHistoricalData.bind(this);
+     this.handleChange24Hour = this.handleChange24Hour.bind(this);
+     this.handleHistoricalLineChart = this.handleHistoricalLineChart.bind(this);
   }
 
   componentDidMount() {
-    // console.log(this.props);
 
     this.props.getSingleSymbolPriceId(this.props.cyprtoData.cryptoCompareCoinId)
     .then((response) => {
@@ -83,6 +103,92 @@ class CryptoFullDetail extends Component {
       })
     }, 2000)
 
+    setTimeout(() => {
+      this.handleHistoricalLineChart()
+    }, 2000)
+
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(prevState)
+    // console.log(prevState.dailyHistorical)
+    console.log(this.state.config.series)
+
+    let prevStateData = prevState.dailyHistorical
+    let finalResult = ''
+
+    let me = prevStateData.filter((value, index) => {
+      // console.log(value.time)
+      // console.log(this.state.dailyHistorical[index].time)
+      if(value.time === this.state.dailyHistorical[index].time) {
+        console.log('LINE 126', true)
+        return finalResult = true
+      } else {
+        console.log('LINE 129', false)
+        return finalResult = false
+      }
+    }) 
+    
+    console.log(`LINE 134 finalResult ${ finalResult }`)
+    console.log('LINE 135',prevState.dailyHistorical , this.state.dailyHistorical)
+
+    if(prevState.dailyHistorical !== this.state.dailyHistorical && finalResult !== true) {
+      console.log(`LINE 138`, true)
+      console.log(this.state.config.series)
+      console.log(`finalResult ${ finalResult }`)
+      console.log('LINE 141',prevState.dailyHistorical , this.state.dailyHistorical)
+        if(finalResult == false) {
+          console.log('FINAL HERE')
+          this.handleHistoricalLineChart()
+        } else {
+          console.log("WHY HERE")
+        }
+  
+      } else if(prevState.dailyHistorical !== this.state.dailyHistorical && finalResult !== false) {
+        console.log('LINE 144',prevState.dailyHistorical , this.state.dailyHistorical)
+        console.log(`LINE 145`, true)
+        console.log(`finalResult ${ finalResult }`)
+        console.log(this.state.config.series)
+        console.log(`LINE 148`, false)
+        // this.handleHistoricalLineChart() 
+
+      // this.state.config.series[0].date = []
+      // console.log(this.state.config.series)
+      // this.handleHistoricalLineChart()
+
+    } else {
+      console.log(`finalResult ${ finalResult }`)
+      console.log('LINE 157', false)
+      console.log('LINE 158',prevState.dailyHistorical , this.state.dailyHistorical)
+
+    }
+  }
+
+  handleHistoricalLineChart() {
+    // let { dailyHistorical } = this.state
+    console.log(this.state.dailyHistorical)
+    console.log(this.state.config.series[0].data)
+    if(this.state.config.series[0].data.length === 11) {
+      // return this.state.dailyHistorical.map((value, index) => {
+      //   // console.log(value, index)
+      //   // console.log(monent.unix(value.time).format('hh:mm:ss a'))
+      //   return this.state.config.series[0].data.push(value.close) , 
+      //         this.state.config.xAxis.categories.push( monent.unix(value.time).format('hh:mm:ss a'))
+      // });
+      console.log('TRUE')
+    } else if(this.state.config.series[0].data.length === 22) { 
+      console.log('FALSE')
+      this.state.config.series[0].data.length = []
+      // this.handleHistoricalLineChart
+    }
+    console.log('HIT');
+    return this.state.dailyHistorical.map((value, index) => {
+      // console.log(value, index)
+      // console.log(monent.unix(value.time).format('hh:mm:ss a'))
+      return this.state.config.series[0].data.push(value.close) , 
+            this.state.config.xAxis.categories.push( monent.unix(value.time).format('hh:mm:ss a'))
+    });
+
   }
 
   displaySingleSymbolFull() {
@@ -97,7 +203,7 @@ class CryptoFullDetail extends Component {
     });
 
     return usdBox.map((value, index) => {
-      console.log(value, index) 
+      // console.log(value, index) 
       return(
         <Row id='singleSymbolMarketRateInnerBox'>
           <p>Mkt. Cap. : { value.HIGH24HOUR }</p>
@@ -162,10 +268,27 @@ class CryptoFullDetail extends Component {
     }
   }
 
+  ////  Need to check this function later 
+  handleChange24Hour(openValue, closeValue) {
+    // console.log(`openValue ${ openValue }`,  `closeValue: ${ closeValue }`)
+    if(openValue >= closeValue) {
+      // console.log('HIGH ')
+      let finalHighValue = openValue - closeValue
+      // console.log(finalHighValue.toFixed(2))
+      return finalHighValue.toFixed(2)
+    } else {
+      // console.log('LOW')
+      let finalLowValue = closeValue - openValue
+      // console.log(finalLowValue.toFixed(2))
+      return finalLowValue.toFixed(2)
+
+    }
+  }
+
 
   render() {
     let { singleSymbolPrice, singleSymbolFull, dailyHistorical, descriptionID, coinInfo, paprokaInfo } = this.state
-    // console.log(this.state)
+    console.log(this.state)
 
     let displayCoinImage = coinInfo.map((value, index) => {
       // console.log(value.CoinInfo, index)
@@ -206,15 +329,19 @@ class CryptoFullDetail extends Component {
       // console.log(value, index)
       // console.log(monent.unix(value.time).format('YYYY-MM-DD, hh:mm:ss a'))
      return(
-        <tbody>
+    
+         <tbody>
           <tr>
             <td>{ monent.unix(value.time).format('YYYY-MM-DD, hh:mm:ss a') }</td>
             <td>${ value.close }</td>
-            <td>placeholder change</td>
+            <td>{ this.handleChange24Hour(value.open, value.close)}</td>
           </tr>
         </tbody>
+       
       )
     });
+
+    
 
     return (
       <div className='mainDetailBox'>
@@ -270,10 +397,10 @@ class CryptoFullDetail extends Component {
               <TabPane tabId='2'>
                 <Row>
                   <Col>
-                    <Button onClick={ () => this.getHistoricalData(1) }>1 Hour</Button>
-                    <Button onClick={ () => this.getHistoricalData(2) }>Daily?</Button>
-                    <Button onClick={ () => this.getHistoricalData(3) }>Min?</Button>
-                    <Table bordered>
+                    <Button color='info' size='sm' onClick={ () => this.getHistoricalData(1) }>1 Hour</Button>
+                    <Button color='info' size='sm' onClick={ () => this.getHistoricalData(2) }>Daily?</Button>
+                    <Button color='info' size='sm' onClick={ () => this.getHistoricalData(3) }>Min?</Button>
+                    <Table bordered className='coinHistoricalBox'>
                       <thead>
                         <tr>
                           <th>Date(every hour)</th>
@@ -284,14 +411,12 @@ class CryptoFullDetail extends Component {
                       { displayDailyHistorical }
                     </Table>
                   </Col>
-
-                  
                 </Row>
               </TabPane>
             </TabContent>
+
+            <ReactHighcharts config={ this.state.config } />
           </div>
-
-
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { Container, Card, CardImg, CardText,
           CardBody, CardTitle, Button } from 'reactstrap';
 
 import './icos.scss';
+import AmazonLink from '../../../amazonLink/amazonLink';
 
 const axios = require('axios');
 const moment = require('moment');
@@ -49,9 +50,15 @@ class Icos extends Component {
     });
 
     return (
-      <Container>
-        { displayIcos }
-      </Container>
+      <div>
+        <Container>
+          { displayIcos }
+        </Container>
+        <div className='amzonBox'>
+           <AmazonLink/>
+        </div>
+      </div>
+      
     );
   }
 }

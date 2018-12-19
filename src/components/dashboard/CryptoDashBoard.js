@@ -20,6 +20,11 @@ class CryptoDashBoard extends Component {
   }
 
   componentDidMount() {
+
+    // setInterval(() => {
+
+    // }, 1000)
+
     axios.get('/api/getTopListByVolume')
     .then((response) => {
       // console.log(response)
@@ -31,14 +36,6 @@ class CryptoDashBoard extends Component {
 
     axios.get('/api/getAllCoinPaproka')
 
-    // setTimeout(() => {
-    //   axios.get('/api/testing')
-    //   .then((response) => {
-    //     console.log(response)
-    //     // this.setState({ cryptoData: response.data.DISPLAY })
-    //   })
-    // }, 5000)
-   
   }
 
 
@@ -48,14 +45,8 @@ class CryptoDashBoard extends Component {
     this.setState({ ids: ids })
     // console.log(`PROPS`, this.props)
     this.props.postSymbolId({ id: ids })
-    
-
 
     this.props.history.push('/cryptoFullDetail')
-
-    // axios.post(`/api/postSymbolId`, { id: ids })
-    // .then(this.props.history.push('/cryptoFullDetail'))
-    // .catch(error => console.log(error));
   }
   
   handleToolTip() {

@@ -5,7 +5,7 @@ import BlockchainDashBoard from './components/dashboard/BlockchainDashBoard';
 import Result from './components/resultPage/blockView/Result';
 import Icos from './components/resultPage/icos/Icos';
 import News from './components/resultPage/news/News';
-import CryptoFullDetail from './components/resultPage/CryptoFullDetail';
+import CryptoFullDetail from './components/resultPage/cryptoFullDetail/CryptoFullDetail';
 import SingleAddress from './components/resultPage/blockView/SingleAddress';
 import SingleTransaction  from './components/resultPage/blockView/SingleTransaction';
 import SingleBlock from './components/resultPage/blockView/SingleBlock';

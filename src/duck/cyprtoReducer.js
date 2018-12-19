@@ -23,16 +23,6 @@ const initialState = {
 }
 
 ////  initial action creator for payload
-
-// export function getAllSymbolData() {
-//   // let {topTrendCoin} = initialState
-//   //  console.log(topTrendCoin)
-//   return {
-//     type: ALLCOINSYMBOL,
-//     payload: axios.get(`/api/getAllCoinDetail`)                
-//   }
-// }
-
 export function postSymbolId(ids) {
   // console.log(`IDS:: ${ ids }`)
   return {
@@ -58,9 +48,8 @@ export function getSingleSymbolFullId(id) {
 }
 
 export function getHistoricalId(id, number) {
-    console.log(`id::${ id }`)
-    console.log(`number::${ number }`)
-
+    // console.log(`id::${ id }`)
+    // console.log(`number::${ number }`)
     return {
       type: HISTORICALID,
       payload: axios.put(`/api/getHistoricalId`, { id: id, number: number })                

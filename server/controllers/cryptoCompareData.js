@@ -56,7 +56,7 @@ let getMultSymbolFullData  = (req, res, next) => {
 let getTopListByVolume  = (req, res, next) => {
     // console.log('line 51 hit backend')
 
-    axios.get(`https://min-api.cryptocompare.com/data/top/totalvolfull?limit=10&tsym=USD`)
+    axios.get(`https://min-api.cryptocompare.com/data/top/totalvolfull?limit=31&tsym=USD`)
     .then((response) => {
       // console.log(response.data)
       res.status(200).send(response.data)

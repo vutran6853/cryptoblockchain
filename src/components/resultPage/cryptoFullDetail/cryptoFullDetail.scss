@@ -1,0 +1,91 @@
+@import '../../../globeSCSS.scss';
+
+
+////  Iphone/Galaxy Screen media css
+
+// @media (min-width: $MoblieMinWidth) and (max-width: $MoblieMaxWidth) {
+
+
+// }
+
+////  screen size 1024
+
+@media only screen and (min-width: $destop1024MinWidth) {
+  .mainDetailBox {
+    // border: $boarder;
+    
+  }
+
+  #colBox {
+    border: $lightBlueBoarder;
+    width: 10px;
+    // height: 86vh;
+    float: left;
+    position: relative;
+    width: 19%;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 1px;
+  
+    p {
+      // border: 2px solid yellow;
+      margin-left: 90px;
+    }
+  
+    img {
+      // border: 2px solid yellow;
+      width: 150px;
+      
+    }
+  }  
+
+  .coinDetailBox {
+    // border: 5px solid black;
+    margin-left: 19vh;
+
+    .singleSymbolPriceBox {
+      // border: 1px solid rgb(134, 101, 212);
+    }
+
+    .singleSymbolMarketRateBox {
+      // border: 1px solid red;
+      // background-color: red;
+
+      p {
+        // border: 2px solid gray;
+        background-color: lightcoral;
+        margin-left: 18px;
+        margin-top: 5px;
+      }
+
+    }
+  }
+
+  #coinDescriptionBox {
+  // border: 1px solid black;
+
+    td {
+      border: 2px solid lightcyan;
+      background-color: lightgoldenrodyellow;
+    }
+
+    p {
+      // border: 2px solid red;
+      margin-top: 5px;
+      background-color: lightgoldenrodyellow;
+    }
+  }
+
+  .coinHistoricalBox {
+      border: 5px solid black;
+
+  }
+}
+
+
+
+////  screen size 1440
+
+// @media only screen and (min-width: $destop1440MinWidth) {
+  
+// }
