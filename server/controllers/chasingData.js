@@ -1,7 +1,6 @@
 const axios = require('axios');
 
 let getActiveIcos  = (req, res, next) => {
-  // console.log('hit backend');
 
   axios.get(`https://chasing-coins.com/api/v1/icos/active`)
   .then((response) => {
@@ -11,11 +10,9 @@ let getActiveIcos  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getUpcomingIcos  = (req, res, next) => {
-  // console.log('hit backend');
 
   axios.get(`https://chasing-coins.com/api/v1/icos/upcoming`)
   .then((response) => {
@@ -25,7 +22,6 @@ let getUpcomingIcos  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 

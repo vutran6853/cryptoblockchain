@@ -118,8 +118,6 @@ class CryptoFullDetail extends Component {
     let finalResult = ''
 
     let me = prevStateData.filter((value, index) => {
-      // console.log(value.time)
-      // console.log(this.state.dailyHistorical[index].time)
       if(value.time === this.state.dailyHistorical[index].time) {
         console.log('LINE 126', true)
         return finalResult = true
@@ -129,19 +127,12 @@ class CryptoFullDetail extends Component {
       }
     }) 
     
-    console.log(`LINE 134 finalResult ${ finalResult }`)
-    console.log('LINE 135',prevState.dailyHistorical , this.state.dailyHistorical)
 
     if(prevState.dailyHistorical !== this.state.dailyHistorical && finalResult !== true) {
-      console.log(`LINE 138`, true)
-      console.log(this.state.config.series)
-      console.log(`finalResult ${ finalResult }`)
-      console.log('LINE 141',prevState.dailyHistorical , this.state.dailyHistorical)
         if(finalResult == false) {
-          console.log('FINAL HERE')
           this.handleHistoricalLineChart()
         } else {
-          console.log("WHY HERE")
+
         }
   
       } else if(prevState.dailyHistorical !== this.state.dailyHistorical && finalResult !== false) {
@@ -165,30 +156,12 @@ class CryptoFullDetail extends Component {
   }
 
   handleHistoricalLineChart() {
-    // let { dailyHistorical } = this.state
-    console.log(this.state.dailyHistorical)
-    console.log(this.state.config.series[0].data)
-    if(this.state.config.series[0].data.length === 11) {
-      // return this.state.dailyHistorical.map((value, index) => {
-      //   // console.log(value, index)
-      //   // console.log(monent.unix(value.time).format('hh:mm:ss a'))
-      //   return this.state.config.series[0].data.push(value.close) , 
-      //         this.state.config.xAxis.categories.push( monent.unix(value.time).format('hh:mm:ss a'))
-      // });
-      console.log('TRUE')
-    } else if(this.state.config.series[0].data.length === 22) { 
-      console.log('FALSE')
-      this.state.config.series[0].data.length = []
-      // this.handleHistoricalLineChart
-    }
-    console.log('HIT');
     return this.state.dailyHistorical.map((value, index) => {
       // console.log(value, index)
       // console.log(monent.unix(value.time).format('hh:mm:ss a'))
       return this.state.config.series[0].data.push(value.close) , 
             this.state.config.xAxis.categories.push( monent.unix(value.time).format('hh:mm:ss a'))
     });
-
   }
 
   displaySingleSymbolFull() {
@@ -197,9 +170,7 @@ class CryptoFullDetail extends Component {
     let eurBox = []
 
    let me = lodash.forEach(singleSymbolFull, function(value, key) {
-      // console.log(key);
-      // console.log(value.USD);
-    usdBox.push(value.USD)   
+                usdBox.push(value.USD)   
     });
 
     return usdBox.map((value, index) => {
@@ -224,11 +195,8 @@ class CryptoFullDetail extends Component {
   
 
   getHistoricalData(number) {
-    // console.log(this.state)
-    // console.log(`number ${ number }`)
 
     if(number === 1) {
-      // console.log(`number ${ number }`)
 
       this.props.getHistoricalId(this.props.cyprtoData.cryptoCompareCoinId, number)
       .then((response) => {
@@ -240,11 +208,9 @@ class CryptoFullDetail extends Component {
       });
 
     } else if(number === 2) {
-      // console.log(`number ${ number }`)
 
       this.props.getHistoricalId(this.props.cyprtoData.cryptoCompareCoinId, number)
       .then((response) => {
-        // console.log(response.value.data.Data)
         this.setState({ dailyHistorical: response.value.data.Data })
       })
       .catch((error) => {
@@ -252,7 +218,6 @@ class CryptoFullDetail extends Component {
       });
 
     } else if(number === 3) {
-      // console.log(`number ${ number }`)
 
       this.props.getHistoricalId(this.props.cyprtoData.cryptoCompareCoinId, number)
       .then((response) => {
@@ -270,25 +235,18 @@ class CryptoFullDetail extends Component {
 
   ////  Need to check this function later 
   handleChange24Hour(openValue, closeValue) {
-    // console.log(`openValue ${ openValue }`,  `closeValue: ${ closeValue }`)
     if(openValue >= closeValue) {
-      // console.log('HIGH ')
       let finalHighValue = openValue - closeValue
-      // console.log(finalHighValue.toFixed(2))
       return finalHighValue.toFixed(2)
     } else {
-      // console.log('LOW')
       let finalLowValue = closeValue - openValue
-      // console.log(finalLowValue.toFixed(2))
       return finalLowValue.toFixed(2)
-
     }
   }
 
 
   render() {
     let { singleSymbolPrice, singleSymbolFull, dailyHistorical, descriptionID, coinInfo, paprokaInfo } = this.state
-    console.log(this.state)
 
     let displayCoinImage = coinInfo.map((value, index) => {
       // console.log(value.CoinInfo, index)

@@ -3,7 +3,7 @@ const axios = require('axios');
 let blockData = []
 
 let getSingleBlock = (req, res, next) => {
-  // console.log(req.params.hash)
+  
   axios.get(`https://blockchain.info/rawblock/${ req.params.hash }`)
   .then((response) => {
     blockData = [response.data]
@@ -15,7 +15,6 @@ let getSingleBlock = (req, res, next) => {
 }
 
 let getSingleTransaction = (req, res, next) => {
-  // console.log(req.params.hash)
   axios.get(`https://blockchain.info/rawtx/${ req.params.hash }`)
   .then((response) => {
     blockData = [response.data]
@@ -27,7 +26,7 @@ let getSingleTransaction = (req, res, next) => {
 }
 
 let getLatestBlock = (req, res, next) => {
-  console.log('hit backend')
+
   axios.get('https://blockchain.info/latestblock')
   .then((response) => {
     // console.log(response.data)
@@ -40,7 +39,6 @@ let getLatestBlock = (req, res, next) => {
 }
 
 let getAddress = (req, res, next) => {
-  console.log(req.params);
 
   axios.get(`https://blockchain.info/rawaddr/${ req.params.address }`)
   .then((response) => {

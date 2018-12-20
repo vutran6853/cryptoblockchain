@@ -27,9 +27,7 @@ class Result extends Component {
   }
 
   render() {
-    // console.log(this.state)
     let { latestBlock, txIndexed } = this.state
-    // console.log(`latestBlock: ${ latestBlock.hash }`)
 
     let displayTXIndexed = txIndexed.map((value, index) => {
       // console.log(value, index)
@@ -39,6 +37,7 @@ class Result extends Component {
         </div>
       )
     });
+    
     return (
       <div>
         <p>Result</p>

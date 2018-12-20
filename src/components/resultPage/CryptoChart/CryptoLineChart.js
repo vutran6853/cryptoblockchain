@@ -25,34 +25,24 @@ class CrptoLineChart extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     setTimeout(() => {
       this.handleMe()
     }, 3000)
-  
-   
   }
 
   
   handleMe() {
-    console.log(this.props)
     let { data }  = this.state.config.series[0]
-    console.log(data)
     let { dailyHistorical } = this.props.data
-    console.log(`dailyHistorical: ${ dailyHistorical }`)
-
     let me2 = []
     let me = dailyHistorical.map((value, index) => {
       // console.log(value, index)
       return me2.push(value.close)
     })
-
-    console.log(`me2 ${ me2 }`);
     this.setState({ data: me2 })
   }
   
   render() {
-    console.log(this.state);
     return (
       <div>
         <p>crptoLineChart</p>

@@ -4,7 +4,6 @@ import './dashBoard.scss';
 import { getLatestBlockQuery, getSingleBlockQuery, getSingleTransactionQuery, getBlockHeightQuery, getSingleAddressQuery } from '../../graphqlQueries/blockchain';
 import ApolloClient from 'apollo-boost';
 import { gql } from 'apollo-boost';     ////  create query for frontend
-// import displaySingleBlock from '../resultPage/singleBlock';
 import axios from 'axios';
 const url = process.env.REACT_APP_URL
 
@@ -32,8 +31,6 @@ class BlockchainDashBoard extends Component {
   handleSubmitData() {
     let { userInputData } = this.state
     let checkString = userInputData[0] + userInputData[1] + userInputData[2] + userInputData[3]
-    console.log(userInputData.length);
-    console.log(`userInputData: ${ userInputData }`)
 
     if(userInputData.length === 64 && checkString === '0000') {
       axios.get(`/api/getSingleBlock/${ userInputData }`)
@@ -41,18 +38,21 @@ class BlockchainDashBoard extends Component {
       .catch((error) => {
         console.log(`Danger! ${ error }`)
       });
+
     } else if(userInputData.length === 64 && checkString !== '0000') {
               axios.get(`/api/getSingleTransaction/${ userInputData }`)
               .then(this.props.history.push('/result/singleTransaction'))
               .catch((error) => {
                 console.log(`Danger! ${ error }`)
               });
+
     } else if(userInputData.length === 34 || userInputData.length === 40){
               axios.get(`/api/getSingleAddress/${ userInputData }`)
               .then(this.props.history.push('/result/singleAddress'))
               .catch((error) => {
                 console.log(`Danger! ${ error }`)
               });
+              
     } else {
       return null
     }

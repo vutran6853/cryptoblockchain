@@ -2,7 +2,6 @@ const grahpql = require('graphql');
 const lodash = require('lodash');
 
 const axiso = require('axios');
-// axios.defaults.headers.common['X-CMC_PRO_API_KEY'] = process.env.REACT_APP_CRYPTOCOMPARE_KEY
 
 const { GraphQLObjectType, GraphQLSchema, GraphQLID} = grahpql;
 const { SingleBlockType, SingleTransactionType, BlockHeightType,

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button,Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
-          NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 import './navBar.scss';
 
 let navBar = (props) => {
-  
 
   return(
     <Container fluid className='navBarBox'>

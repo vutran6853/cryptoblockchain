@@ -10,17 +10,15 @@ let symbolID = ''
 
 
 let getSingleSymbolPrice = (req, res, next) => {
-  // console.log('Line 13 hit')
-  // console.log(`symbolID ${ symbolID }`);
+
   axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${ symbolID }&tsyms=USD,JPY,EUR`)
   .then((response) => {
-    console.log(response.data)
+    // console.log(response.data)
     // res.status(200).send(response.data)
   })
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-  getMultSymbolPrice()
 }
 
 let getMultSymbolPrice  = (req, res, next) => {
@@ -34,7 +32,6 @@ let getMultSymbolPrice  = (req, res, next) => {
   // .catch((error) => {
   //   console.log(`Danger! Backend errror ${ error }`)
   // });
-
 }
 
 let getMultSymbolFullData  = (req, res, next) => {
@@ -50,11 +47,9 @@ let getMultSymbolFullData  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getTopListByVolume  = (req, res, next) => {
-    // console.log('line 51 hit backend')
 
     axios.get(`https://min-api.cryptocompare.com/data/top/totalvolfull?limit=31&tsym=USD`)
     .then((response) => {
@@ -67,8 +62,6 @@ let getTopListByVolume  = (req, res, next) => {
 }
 
 let getCustomAverage  = (req, res, next) => {
-  // console.log('hit backend');
-
 
   axios.get(`https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=Kraken`)
   .then((response) => {
@@ -78,34 +71,24 @@ let getCustomAverage  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getAllCoinDetail  = (req, res, next) => {
-  // console.log('Line 67 hit backend');
-
 
   axios.get(`https://min-api.cryptocompare.com/data/all/coinlist`)
   .then((response) => {
-    // console.log(response.data.Data)
     allCoinDataStore = response.data.Data
-
   })
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let testing = (req, res, next) => {
-  // console.log('Line 85 HIT' )
-
-  // console.log(`allCoinDataStore ${ allCoinDataStore }`)
 
     let shortData = lodash.map(allCoinDataStore)
-    // console.log(shortData);
+
     let testShortData = shortData.slice(0, 2)
-    // console.log(testShortData)
 
     const dbInstance = req.app.get('db');
 
@@ -178,8 +161,6 @@ let testing = (req, res, next) => {
 
 
 let getConstituentExchanges  = (req, res, next) => {
-  // console.log('hit backend');
-
 
   axios.get(`https://min-api.cryptocompare.com/data/all/cccaggexchanges`)
   .then((response) => {
@@ -189,12 +170,9 @@ let getConstituentExchanges  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getNewsArticles  = (req, res, next) => {
-  // console.log('hit backend');
-
 
   axios.get(`https://min-api.cryptocompare.com/data/v2/news/?lang=EN`)
   .then((response) => {
@@ -204,7 +182,6 @@ let getNewsArticles  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getAllSymbol  = (req, res, next) => {
@@ -220,24 +197,21 @@ let getAllSymbol  = (req, res, next) => {
   //   console.log(`Danger! Backend errror ${ error }`)
   // });
 
-  mongoose.model('Crypto').find({
-    Symbol: "*"
-  })
-  .then((response) => {
-    console.log(response);
-  })
+  // mongoose.model('Crypto').find({
+  //   Symbol: "*"
+  // })
+  // .then((response) => {
+  //   console.log(response);
+  // })
 }
 
 
 let postSymbolId  = (req, res, next) => {
-  // console.log(`Line 233 req.body ${ req.body.id }`)
   symbolID = req.body.id
   res.status(200)
 }
 
 let getSymbolFullDetail  = (req, res, next) => {
-  // console.log(`Line 239 symbolID ${ symbolID }`)
-
 
 }
 

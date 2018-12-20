@@ -3,6 +3,7 @@ import { Container, Card, CardImg, CardText,
           CardBody, CardTitle, Button } from 'reactstrap';
 import { BackTop } from 'antd';
 import css from './news.scss';
+import AmazonLink1 from '../../../amazonLink/amazonLink1';
 
 const axios = require('axios');
 
@@ -60,6 +61,9 @@ class News extends Component {
       <div>
         { displayNews }
       
+        <div className='amzonBox'>
+           <AmazonLink1/>
+        </div>
         <BackTop>
           <div className="backToTheTop">UP</div>
         </BackTop>

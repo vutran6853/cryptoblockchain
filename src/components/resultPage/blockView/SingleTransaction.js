@@ -20,8 +20,6 @@ class SingleTransaction extends Component {
     });
   }
 
-
-
   render() {
     let { blockData } = this.state;
 

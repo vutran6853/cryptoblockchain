@@ -21,10 +21,6 @@ class CryptoDashBoard extends Component {
 
   componentDidMount() {
 
-    // setInterval(() => {
-
-    // }, 1000)
-
     axios.get('/api/getTopListByVolume')
     .then((response) => {
       // console.log(response)

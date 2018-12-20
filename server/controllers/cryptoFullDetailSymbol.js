@@ -7,13 +7,11 @@ let paprokaIdData = []
 
 
 let postSymbolId  = (req, res, next) => {
-  // console.log(`Line 9 req.body ${ req.body.id }`)
   symbolID = req.body.id
   res.status(200)
 }
 
 let getSingleSymbolPriceId  = (req, res, next) => {
-  // console.log(`LINE 16 req.params`, req.params)
 
   axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${ req.params.id }&tsyms=USD,JPY,EUR`)
   .then((response) => {
@@ -23,7 +21,6 @@ let getSingleSymbolPriceId  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getSingleSymbolFullId  = (req, res, next) => {
@@ -36,12 +33,10 @@ let getSingleSymbolFullId  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-
 }
 
 let getHistoricalId  = (req, res, next) => {
 
-  // console.log("LINE 44", req.body)
   if(req.body.number === 1) {
 
     axios.get(`https://min-api.cryptocompare.com/data/histohour?fsym=${ req.body.id }&tsym=USD&limit=10&`)
@@ -82,8 +77,6 @@ let getHistoricalId  = (req, res, next) => {
       console.log(`Danger! Backend errror ${ error }`)
     });
   }
- 
-
 }
 
 let getCoinInfoId  = (req, res, next) => {
@@ -96,7 +89,6 @@ let getCoinInfoId  = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-  
 }
 
 let getAllCoinPaproka = (req, res, next) => {
@@ -110,15 +102,12 @@ let getAllCoinPaproka = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-  next(empty())
 }
 
 
 let getpaprokaId = (req, res, next) => {
-  // console.log('hit line 83')
-  // console.log(`LINE 84 req.params`, req.params)
 
-    let filterID = allCoinpaprika.filter((value, index) => {
+  let filterID = allCoinpaprika.filter((value, index) => {
       // console.log(value.symbol, symbolID)
       if(value.symbol === req.params.id) {
         res.status(200).send(value)
@@ -134,8 +123,6 @@ let getpaprokaId = (req, res, next) => {
 }
 
 let getPaprokaDescriptionID = (req, res, next) => {
-  // console.log('HIT line 102')
-  // console.log(`LINE 103 req.params`, req.params)
 
   axios.get(`https://api.coinpaprika.com/v1/coins/${ req.params.id }`)
   .then((response) => {
@@ -145,11 +132,6 @@ let getPaprokaDescriptionID = (req, res, next) => {
   .catch((error) => {
     console.log(`Danger! Backend errror ${ error }`)
   });
-  
-  
-
- 
- 
 }
 
 function empty() {
